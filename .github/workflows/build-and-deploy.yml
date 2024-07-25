@@ -23,19 +23,19 @@ on:
 env:
   AZURE_WEBAPP_NAME: netapplication             # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: './published'      # set this to the path to your web app project, defaults to the repository root
-  DOTNET_VERSION: '5.0.17'                       # set this to the .NET Core version to use
+  NETCORE_VERSION: '5.0.17'                       # set this to the .NET Core version to use
 
 jobs:
   build:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     
-    - name: Setup .NET Core SDK ${{ env.DOTNET_VERSION }}
-      uses: actions/setup-dotnet@v1
+    - name: Setup .NET Core SDK ${{ env.NETCORE_VERSION }}
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
+        dotnet-version: ${{ env.NETCORE_VERSION }}
     
     - name: Restore packages
       run: dotnet restore
